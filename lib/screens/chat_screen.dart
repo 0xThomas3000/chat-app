@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 
 class ChatScreen extends StatelessWidget {
   @override
@@ -15,12 +16,13 @@ class ChatScreen extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          final documents = streamSnapShot.data;
+          final documents = streamSnapShot.data as QuerySnapshot;
+          //final doc = streamSnapShot as dynamic;
           return ListView.builder(
-            itemCount: documents.toString().length,
+            itemCount: documents.docs.length,
             itemBuilder: (ctx, index) => Container(
               padding: const EdgeInsets.all(8),
-              child: Text((documents as List)[index]['text']),
+              child: Text(documents.docs[index]['text']),
             ),
           );
         },
