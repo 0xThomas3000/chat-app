@@ -39,6 +39,7 @@ class _AuthFormState extends State<AuthForm> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   TextFormField(
+                    key: const ValueKey('email'),
                     validator: (value) {
                       if (value!.isEmpty || !value.contains('@')) {
                         return 'Please enter a valid email address';
@@ -55,6 +56,7 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                   if (!_isLogin)
                     TextFormField(
+                      key: const ValueKey('username'),
                       validator: (value) {
                         if (value!.isEmpty || value.length < 4) {
                           return 'Please enter at least 4 characters!';
@@ -67,6 +69,7 @@ class _AuthFormState extends State<AuthForm> {
                       },
                     ),
                   TextFormField(
+                    key: const ValueKey('password'),
                     validator: (value) {
                       if (value!.isEmpty || value.length < 7) {
                         return 'Password must be at least 7 characters long';
