@@ -37,10 +37,6 @@ class _AuthFormState extends State<AuthForm> {
                     onPressed: () {},
                   ),
                   TextButton(
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(
-                          Theme.of(context).primaryColor),
-                    ),
                     child: const Text('Create new account'),
                     onPressed: () {},
                   )
