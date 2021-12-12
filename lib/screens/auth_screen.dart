@@ -12,7 +12,9 @@ class _AuthScreenState extends State<AuthScreen> {
     String password,
     String username,
     bool isLogin,
-  ) {}
+  ) {
+    
+  }
 
   @override
   Widget build(BuildContext context) {
