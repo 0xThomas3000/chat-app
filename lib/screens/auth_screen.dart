@@ -21,6 +21,7 @@ class _AuthScreenState extends State<AuthScreen> {
     BuildContext ctx,
   ) async {
     UserCredential authResult;
+
     try {
       setState(() {
         _isLoading = true;
@@ -44,30 +45,21 @@ class _AuthScreenState extends State<AuthScreen> {
         });
       }
     } on PlatformException catch (err) {
-      var message = 'An error occurred, please check your credentials!';
+      var message = 'An error occurred, pelase check your credentials!';
 
       if (err.message != null) {
         message = err.message!;
       }
 
-      Scaffold.of(ctx).showSnackBar(
+      ScaffoldMessenger.of(ctx).showSnackBar(
         SnackBar(
           content: Text(message),
           backgroundColor: Theme.of(ctx).colorScheme.error,
         ),
       );
-
-      // ScaffoldMessenger.of(ctx).showSnackBar(
-      //   SnackBar(
-      //     content: Text(message),
-      //     backgroundColor: Theme.of(ctx).colorScheme.error,
-      //   ),
-      // );
-
       setState(() {
         _isLoading = false;
       });
-      
     } catch (err) {
       print(err);
       setState(() {
