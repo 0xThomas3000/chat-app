@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(
           backgroundColor: Colors.indigo,
           primarySwatch: Colors.indigo,
+          errorColor: Colors.red,
         ).copyWith(
           secondary: Colors.deepPurple,
         ),
