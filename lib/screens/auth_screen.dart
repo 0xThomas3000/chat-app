@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../widgets/auth/auth_form.dart';
 
@@ -44,7 +43,7 @@ class _AuthScreenState extends State<AuthScreen> {
           'email': email,
         });
       }
-    } on PlatformException catch (err) {
+    } on FirebaseAuthException catch (err) {
       var message = 'An error occurred, pelase check your credentials!';
 
       if (err.message != null) {

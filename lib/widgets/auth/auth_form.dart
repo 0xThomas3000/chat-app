@@ -27,11 +27,11 @@ class _AuthFormState extends State<AuthForm> {
   var _userPassword = '';
 
   void _trySubmit() {
-    final isValid = _formKey.currentState!.validate();
+    final isValid = _formKey.currentState?.validate();
     FocusScope.of(context).unfocus();
 
-    if (isValid) {
-      _formKey.currentState!.save();
+    if (isValid!) {
+      _formKey.currentState?.save();
       widget.submitFn(
         _userEmail.trim(),
         _userPassword.trim(),
@@ -59,7 +59,7 @@ class _AuthFormState extends State<AuthForm> {
                     key: const ValueKey('email'),
                     validator: (value) {
                       if (value!.isEmpty || !value.contains('@')) {
-                        return 'Please enter a valid email address';
+                        return 'Please enter a valid email address.';
                       }
                       return null;
                     },
@@ -76,7 +76,7 @@ class _AuthFormState extends State<AuthForm> {
                       key: const ValueKey('username'),
                       validator: (value) {
                         if (value!.isEmpty || value.length < 4) {
-                          return 'Please enter at least 4 characters!';
+                          return 'Please enter at least 4 characters';
                         }
                         return null;
                       },
@@ -89,15 +89,15 @@ class _AuthFormState extends State<AuthForm> {
                     key: const ValueKey('password'),
                     validator: (value) {
                       if (value!.isEmpty || value.length < 7) {
-                        return 'Password must be at least 7 characters long';
+                        return 'Password must be at least 7 characters long.';
                       }
                       return null;
                     },
                     decoration: const InputDecoration(labelText: 'Password'),
+                    obscureText: true,
                     onSaved: (value) {
                       _userPassword = value!;
                     },
-                    obscureText: true,
                   ),
                   const SizedBox(height: 12),
                   if (widget.isLoading) const CircularProgressIndicator(),
@@ -108,6 +108,12 @@ class _AuthFormState extends State<AuthForm> {
                     ),
                   if (!widget.isLoading)
                     TextButton(
+                      style: ButtonStyle(
+                        foregroundColor: Theme.of(context)
+                            .textButtonTheme
+                            .style
+                            ?.foregroundColor,
+                      ),
                       child: Text(_isLogin
                           ? 'Create new account'
                           : 'I already have an account'),
@@ -116,7 +122,7 @@ class _AuthFormState extends State<AuthForm> {
                           _isLogin = !_isLogin;
                         });
                       },
-                    ),
+                    )
                 ],
               ),
             ),
